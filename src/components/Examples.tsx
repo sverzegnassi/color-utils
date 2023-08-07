@@ -48,6 +48,7 @@ export function Examples(props: ExamplesProps) {
               }}
             >
               <p style={{ color: hexFromTheme(theme, "neutral", "950") }}>Light theme</p>
+              <div style={{ backgroundColor: hexFromTheme(theme, "neutral", "500"), height: "2px" }}></div>
             </div>
           </Grid>
 
@@ -68,6 +69,7 @@ export function Examples(props: ExamplesProps) {
               }}
             >
               <p style={{ color: hexFromTheme(theme, "neutral", "50") }}>Dark theme</p>
+              <div style={{ backgroundColor: hexFromTheme(theme, "neutral", "500"), height: "2px" }}></div>
             </div>
           </Grid>
 

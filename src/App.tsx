@@ -9,11 +9,12 @@ import Stack from "@mui/material/Stack";
 
 function App() {
   let [startColor, setStartColor] = useState("#131B27");
-  let [generatedTheme, setGeneratedTheme] = useState<MyColorTheme>(createNewTheme(startColor));
+  let [accentColor, setAccentColor] = useState("#C75030");
+  let [generatedTheme, setGeneratedTheme] = useState<MyColorTheme>(createNewTheme(startColor, accentColor));
 
   useEffect(() => {
-    setGeneratedTheme(createNewTheme(startColor));
-  }, [startColor]);
+    setGeneratedTheme(createNewTheme(startColor, accentColor));
+  }, [startColor, accentColor]);
 
   return (
     <>
@@ -24,6 +25,12 @@ function App() {
             variant="outlined"
             value={startColor}
             onChange={(e) => setStartColor(e.target.value)}
+          />
+          <TextField
+            label="Accent color HEX"
+            variant="outlined"
+            value={accentColor}
+            onChange={(e) => setAccentColor(e.target.value)}
           />
         </Stack>
       </Container>

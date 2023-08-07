@@ -47,7 +47,7 @@ function createPalette(paletteBase: MyColorPalette, fromColor: number) {
  * 50: Text [dark]
  * 100: Background [light]
  * 300: Secondary background [light]
- * 500: Accent color - Manually picked: WCAG 4.5:1 on both [light]+[dark] background
+ * 500: Accent color - Manually picked: WCAG 3:1 on both [light]+[dark] background
  * 700: Secondary background [dark]
  * 900: Background [dark]
  * 950: Text [light]
@@ -100,16 +100,22 @@ const PALETTE_SEMANTIC = [
   { name: "700", value: 20 },
 ];
 
-export function createNewTheme(fromColor: string) {
-  if (!/^#[0-9A-F]{6}$/i.test(fromColor)) {
+export function createNewTheme(fromColor: string, accentColor: string) {
+  if (!/^#[0-9A-F]{6}$/i.test(fromColor) || !/^#[0-9A-F]{6}$/i.test(accentColor)) {
     return {};
   }
 
   const argb = argbFromHex(fromColor);
+  const neutralPalette = createPalette(PALETTE_NEUTRAL, argb)
+
+  // Insert accentColor into neutral-500
+  const neutral500 = neutralPalette.find(v => v.name === "500")
+  if (neutral500) {
+    neutral500.value = TonalPalette.fromInt(argbFromHex(accentColor)).tone(50);
+  }
 
   return {
-    neutral: createPalette(PALETTE_NEUTRAL, argb),
-
+    neutral: neutralPalette,
     link: createPalette(PALETTE_LINK, Blend.harmonize(argbFromHex(COLOR_REF_LINK), argb)),
     linkVisited: createPalette(PALETTE_LINK, Blend.harmonize(argbFromHex(COLOR_REF_LINK_VISITED), argb)),
     success: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_SUCCESS), argb)),
