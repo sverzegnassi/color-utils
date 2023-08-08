@@ -80,7 +80,7 @@ export function Examples(props: ExampleProps) {
                 ACCENT WCAG {wcagContrast(colors.dark.second_bg, colors.dark.accent)}
               </p>
               <p style={{ color: colors.dark.text }}>
-                ACCENT APCA {apcaContrast(colors.dark.accent, colors.dark.second_bg)} (min: -30)
+                ACCENT APCA {apcaContrast(colors.dark.accent, colors.dark.second_bg)}
               </p>
             </div>
           </Grid>
