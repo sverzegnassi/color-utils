@@ -8,6 +8,8 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
+import Button from "@mui/material/Button";
+import { exportTailwindConfig } from "./lib/utils";
 
 function App() {
   let [startColor, setStartColor] = useState("#131B27");
@@ -39,6 +41,9 @@ function App() {
             <Typography gutterBottom>Yellow drift: {yellowDrift}</Typography>
             <Slider value={yellowDrift} min={125} max={255} onChange={(_e, value) => setYellowDrift(value)} />
           </div>
+          <Button onClick={() => exportTailwindConfig(generatedTheme)}>
+            Export Tailwind Config
+          </Button>
         </Stack>
       </Container>
 
