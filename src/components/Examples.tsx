@@ -17,6 +17,7 @@ export function Examples(props: ExampleProps) {
       border: hexFromTheme(theme, "neutral", "700") + "66",
       text: hexFromTheme(theme, "neutral", "950"),
       linkText: hexFromTheme(theme, "link", "950"),
+      visitedLinkText: hexFromTheme(theme, "linkVisited", "950"),
       accent: hexFromTheme(theme, "neutral", "500"),
     },
     dark: {
@@ -25,6 +26,7 @@ export function Examples(props: ExampleProps) {
       border: hexFromTheme(theme, "neutral", "300") + "66",
       text: hexFromTheme(theme, "neutral", "50"),
       linkText: hexFromTheme(theme, "link", "50"),
+      visitedLinkText: hexFromTheme(theme, "linkVisited", "50"),
       accent: hexFromTheme(theme, "neutral", "500"),
     },
   };
@@ -93,16 +95,36 @@ export function Examples(props: ExampleProps) {
               }}
             >
               <p style={{ color: colors.light.text }}>Link on light</p>
-              <p style={{ color: colors.light.linkText, fontWeight: 600, textDecoration: "underline" }}>I'm a Link</p>
-              <p style={{ color: colors.light.text }}>
-                w/ BG WCAG {wcagContrast(colors.light.second_bg, colors.light.linkText)}
-              </p>
-              <p style={{ color: colors.light.text }}>
-                w/ TEXT WCAG {wcagContrast(colors.light.text, colors.light.linkText)}
-              </p>
-              <p style={{ color: colors.light.text }}>
-                w/ BG APCA {apcaContrast(colors.light.linkText, colors.light.second_bg)}
-              </p>
+              <Grid container sx={{ px: 1 }}>
+                <Grid xs={6}>
+                  <p style={{ color: colors.light.linkText, fontWeight: 600, textDecoration: "underline" }}>
+                    I'm a Link
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ BG WCAG {wcagContrast(colors.light.second_bg, colors.light.linkText)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ TEXT WCAG {wcagContrast(colors.light.text, colors.light.linkText)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ BG APCA {apcaContrast(colors.light.linkText, colors.light.second_bg)}
+                  </p>
+                </Grid>
+                <Grid xs={6}>
+                  <p style={{ color: colors.light.visitedLinkText, fontWeight: 600, textDecoration: "underline" }}>
+                    I'm a Visited Link
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ BG WCAG {wcagContrast(colors.light.second_bg, colors.light.linkText)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ TEXT WCAG {wcagContrast(colors.light.text, colors.light.visitedLinkText)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    w/ BG APCA {apcaContrast(colors.light.visitedLinkText, colors.light.second_bg)}
+                  </p>
+                </Grid>
+              </Grid>
             </div>
           </Grid>
 
@@ -116,17 +138,36 @@ export function Examples(props: ExampleProps) {
               }}
             >
               <p style={{ color: colors.dark.text }}>Link on dark</p>
-              <p style={{ color: colors.dark.linkText, fontWeight: 600, textDecoration: "underline" }}>I'm a Link</p>
-
-              <p style={{ color: colors.dark.text }}>
-                w/ BG WCAG {wcagContrast(colors.dark.second_bg, colors.dark.linkText)}
-              </p>
-              <p style={{ color: colors.dark.text }}>
-                w/ TEXT WCAG {wcagContrast(colors.dark.text, colors.dark.linkText)}
-              </p>
-              <p style={{ color: colors.dark.text }}>
-                w/ BG APCA {apcaContrast(colors.dark.linkText, colors.dark.second_bg)}
-              </p>
+              <Grid container sx={{ px: 1 }}>
+                <Grid xs={6}>
+                  <p style={{ color: colors.dark.linkText, fontWeight: 600, textDecoration: "underline" }}>
+                    I'm a Link
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ BG WCAG {wcagContrast(colors.dark.second_bg, colors.dark.linkText)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ TEXT WCAG {wcagContrast(colors.dark.text, colors.dark.linkText)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ BG APCA {apcaContrast(colors.dark.linkText, colors.dark.second_bg)}
+                  </p>
+                </Grid>
+                <Grid xs={6}>
+                  <p style={{ color: colors.dark.visitedLinkText, fontWeight: 600, textDecoration: "underline" }}>
+                    I'm a Visited Link
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ BG WCAG {wcagContrast(colors.dark.second_bg, colors.dark.linkText)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ TEXT WCAG {wcagContrast(colors.dark.text, colors.dark.visitedLinkText)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    w/ BG APCA {apcaContrast(colors.dark.visitedLinkText, colors.dark.second_bg)}
+                  </p>
+                </Grid>
+              </Grid>
             </div>
           </Grid>
         </Grid>
