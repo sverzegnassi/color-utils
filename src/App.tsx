@@ -6,15 +6,18 @@ import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { Examples } from "./components/Examples";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Slider from "@mui/material/Slider";
 
 function App() {
   let [startColor, setStartColor] = useState("#131B27");
   let [accentColor, setAccentColor] = useState("#C75030");
-  let [generatedTheme, setGeneratedTheme] = useState<MyColorTheme>(createNewTheme(startColor, accentColor));
+  let [yellowDrift, setYellowDrift] = useState(180);
+  let [generatedTheme, setGeneratedTheme] = useState<MyColorTheme>(createNewTheme(startColor, accentColor, yellowDrift));
 
   useEffect(() => {
-    setGeneratedTheme(createNewTheme(startColor, accentColor));
-  }, [startColor, accentColor]);
+    setGeneratedTheme(createNewTheme(startColor, accentColor, yellowDrift));
+  }, [startColor, accentColor, yellowDrift]);
 
   return (
     <>
@@ -32,6 +35,10 @@ function App() {
             value={accentColor}
             onChange={(e) => setAccentColor(e.target.value)}
           />
+          <div>
+            <Typography gutterBottom>Yellow drift: {yellowDrift}</Typography>
+            <Slider value={yellowDrift} min={125} max={255} onChange={(_e, value) => setYellowDrift(value)} />
+          </div>
         </Stack>
       </Container>
 

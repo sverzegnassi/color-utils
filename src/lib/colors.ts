@@ -1,4 +1,10 @@
-import { argbFromHex, TonalPalette, Blend, hexFromArgb, DislikeAnalyzer, Hct } from "@material/material-color-utilities";
+import {
+  argbFromHex,
+  TonalPalette,
+  Blend,
+  hexFromArgb,
+} from "@material/material-color-utilities";
+import Color from "colorjs.io";
 
 /**
  * This library use the same color strategy designed for
@@ -10,7 +16,7 @@ export const COLOR_REF_LINK = "#0066FF";
 export const COLOR_REF_LINK_VISITED = "#FF00FF";
 export const COLOR_REF_SUCCESS = "#00ff00";
 export const COLOR_REF_ERROR = "#ff0000";
-export const COLOR_REF_WARNING = "#FFFF00";
+export const COLOR_REF_WARNING = "#FFD000";
 export const COLOR_REF_INFO = "#0000a5";
 
 export interface MyColorTheme {
@@ -35,7 +41,7 @@ function createPalette(paletteBase: MyColorPalette, fromColor: number) {
   let materialPalette = TonalPalette.fromInt(fromColor);
 
   newPalette.forEach((cs) => {
-    cs.value = DislikeAnalyzer.fixIfDisliked(Hct.fromInt(materialPalette.tone(cs.value))).toInt();
+       cs.value = materialPalette.tone(cs.value);
   });
 
   return newPalette;
@@ -99,20 +105,26 @@ const PALETTE_SEMANTIC = [
   { name: "500", value: 50 },
   { name: "700", value: 20 },
 ];
-
-export function createNewTheme(fromColor: string, accentColor: string) {
+/**
+ * `yellowDrift` represent the Green channel to use on `#FFxx00` to generate MyColorTheme.warning palette
+ */
+export function createNewTheme(fromColor: string, accentColor: string, yellowDrift: number) {
   if (!/^#[0-9A-F]{6}$/i.test(fromColor) || !/^#[0-9A-F]{6}$/i.test(accentColor)) {
     return {};
   }
 
   const argb = argbFromHex(fromColor);
-  const neutralPalette = createPalette(PALETTE_NEUTRAL, argb)
+  const neutralPalette = createPalette(PALETTE_NEUTRAL, argb);
 
   // Insert accentColor into neutral-500
-  const neutral500 = neutralPalette.find(v => v.name === "500")
+  const neutral500 = neutralPalette.find((v) => v.name === "500");
   if (neutral500) {
     neutral500.value = TonalPalette.fromInt(argbFromHex(accentColor)).tone(50);
   }
+
+  // Generate the selected yellow
+  const yellow = new Color("srgb", [1, yellowDrift / 255.0, 0]);
+  const yellowHex = yellow.toString({ format: "hex" });
 
   return {
     neutral: neutralPalette,
@@ -120,10 +132,7 @@ export function createNewTheme(fromColor: string, accentColor: string) {
     linkVisited: createPalette(PALETTE_LINK, Blend.harmonize(argbFromHex(COLOR_REF_LINK_VISITED), argb)),
     success: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_SUCCESS), argb)),
     error: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_ERROR), argb)),
-    warning: createPalette(
-      PALETTE_SEMANTIC,
-      Blend.hctHue(argbFromHex(COLOR_REF_WARNING), Blend.harmonize(argbFromHex(COLOR_REF_WARNING), argb), 0.25)
-    ),
+    warning: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(yellowHex), argb)),
     info: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_INFO), argb)),
   };
 }
