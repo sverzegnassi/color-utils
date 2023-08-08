@@ -47,26 +47,16 @@ function createPalette(paletteBase: MyColorPalette, fromColor: number) {
   return newPalette;
 }
 
-/**
- * Naming convention for PALETTE_NEUTRAL:
- *
- * 50: Text [dark]
- * 100: Background [light]
- * 300: Secondary background [light]
- * 500: Accent color - Manually picked: WCAG 3:1 on both [light]+[dark] background
- * 700: Secondary background [dark]
- * 900: Background [dark]
- * 950: Text [light]
- */
-
 const PALETTE_NEUTRAL = [
-  { name: "50", value: 95 },
-  { name: "100", value: 97 },
-  { name: "300", value: 94 },
-  { name: "500", value: 50 },
-  { name: "700", value: 17 },
-  { name: "900", value: 9 },
-  { name: "950", value: 10 },
+  { name: "100", value: 97 },   // Light: Background  +  Dark: Text
+  { name: "200", value: 95 },   // Light: Secondary BG
+  { name: "300", value: 84 },   // Light: Border
+  { name: "400", value: 59 },   // Dark: Disabled Text / Placeholder
+  { name: "500", value: 50 },   // ACCENT COLOR
+  { name: "600", value: 44 },   // Light: Disabled Text
+  { name: "700", value: 39 },   // Dark: Border
+  { name: "800", value: 16 },   // Dark: Secondary BG
+  { name: "900", value: 10 },   // Dark: Background  +  Light: Text
 ];
 
 /**
@@ -81,29 +71,24 @@ const PALETTE_NEUTRAL = [
  * with the background (3:1 for large text) to meet WCAG 2 Level AA.
  */
 
-/**
- * Naming convention for PALETTE_LINK:
- *
- * 50: Text [dark] - WCAG 3:1 against NEUTRAL_50 and WCAG 4.5:1 against NEUTRAL_700
- * 950: Text [dark] - WCAG 3:1 against NEUTRAL_950 and WCAG 4.5:1 against NEUTRAL_700
- */
 const PALETTE_LINK = [
-  { name: "50", value: 17 + 38 },
-  { name: "950", value: 94 - 49 },
+  { name: "100", value: 59 },
+  { name: "900", value: 45 },
 ];
 
 /**
  * Naming convention for PALETTE_SEMANTIC:
  *
  * 300: Background [light] / Text+Foreground [dark]
+ * 500: Border [light + dark]
  * 700: Text+Foreground [light] / Background [dark]
  *
  * Should pass WCAG 7:1
  */
 const PALETTE_SEMANTIC = [
-  { name: "300", value: 80 },
-  { name: "500", value: 50 },
-  { name: "700", value: 20 },
+  { name: "300", value: 81 },
+  { name: "500", value: 47 },
+  { name: "700", value: 25 },
 ];
 /**
  * `yellowDrift` represent the Green channel to use on `#FFxx00` to generate MyColorTheme.warning palette

@@ -13,20 +13,22 @@ export function Examples(props: ExampleProps) {
   const colors = {
     light: {
       bg: hexFromTheme(theme, "neutral", "100"),
-      second_bg: hexFromTheme(theme, "neutral", "300"),
-      border: hexFromTheme(theme, "neutral", "700") + "66",
-      text: hexFromTheme(theme, "neutral", "950"),
-      linkText: hexFromTheme(theme, "link", "950"),
-      visitedLinkText: hexFromTheme(theme, "linkVisited", "950"),
+      second_bg: hexFromTheme(theme, "neutral", "200"),
+      border: hexFromTheme(theme, "neutral", "300"),
+      text: hexFromTheme(theme, "neutral", "900"),
+      linkText: hexFromTheme(theme, "link", "900"),
+      visitedLinkText: hexFromTheme(theme, "linkVisited", "900"),
+      disabledText: hexFromTheme(theme, "neutral", "600"),
       accent: hexFromTheme(theme, "neutral", "500"),
     },
     dark: {
       bg: hexFromTheme(theme, "neutral", "900"),
-      second_bg: hexFromTheme(theme, "neutral", "700"),
-      border: hexFromTheme(theme, "neutral", "300") + "66",
-      text: hexFromTheme(theme, "neutral", "50"),
-      linkText: hexFromTheme(theme, "link", "50"),
-      visitedLinkText: hexFromTheme(theme, "linkVisited", "50"),
+      second_bg: hexFromTheme(theme, "neutral", "800"),
+      border: hexFromTheme(theme, "neutral", "700"),
+      text: hexFromTheme(theme, "neutral", "100"),
+      linkText: hexFromTheme(theme, "link", "100"),
+      visitedLinkText: hexFromTheme(theme, "linkVisited", "100"),
+      disabledText: hexFromTheme(theme, "neutral", "400"),
       accent: hexFromTheme(theme, "neutral", "500"),
     },
   };
@@ -45,18 +47,43 @@ export function Examples(props: ExampleProps) {
               }}
             >
               <p style={{ color: colors.light.text }}>Light theme</p>
-              <p style={{ color: colors.light.text }}>WCAG {wcagContrast(colors.light.second_bg, colors.light.text)}</p>
-              <p style={{ color: colors.light.text }}>1st BG APCA {apcaContrast(colors.light.text, colors.light.bg)}</p>
-              <p style={{ color: colors.light.text }}>
-                2nd BG APCA {apcaContrast(colors.light.text, colors.light.second_bg)}
-              </p>
-              <div style={{ backgroundColor: colors.light.accent, height: "2px" }}></div>
-              <p style={{ color: colors.light.text }}>
-                ACCENT WCAG {wcagContrast(colors.light.second_bg, colors.light.accent)}
-              </p>
-              <p style={{ color: colors.light.text }}>
-                ACCENT APCA {apcaContrast(colors.light.accent, colors.light.second_bg)}
-              </p>
+              <Grid container>
+                <Grid xs={6}>
+                  <p style={{ color: colors.light.text }}>
+                    WCAG {wcagContrast(colors.light.second_bg, colors.light.text)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    1st BG APCA {apcaContrast(colors.light.text, colors.light.bg)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    2nd BG APCA {apcaContrast(colors.light.text, colors.light.second_bg)}
+                  </p>
+                  <div style={{ backgroundColor: colors.light.accent, height: "2px" }}></div>
+                  <p style={{ color: colors.light.text }}>
+                    ACCENT WCAG {wcagContrast(colors.light.second_bg, colors.light.accent)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                    ACCENT APCA {apcaContrast(colors.light.accent, colors.light.second_bg)}
+                  </p>
+                </Grid>
+                <Grid xs={6}>
+                  <p style={{ color: colors.light.text }}>
+                  BORDER 1st BG APCA {apcaContrast(colors.light.border, colors.light.bg)}
+                  </p>
+                  <p style={{ color: colors.light.text }}>
+                  BORDER 2nd BG APCA {apcaContrast(colors.light.border, colors.light.second_bg)}
+                  </p>
+                  <p style={{ color: colors.light.disabledText }}>
+                    w/ TEXT Disabled WCAG {wcagContrast(colors.light.text, colors.light.disabledText)}
+                  </p>
+                  <p style={{ color: colors.light.disabledText }}>
+                    2nd BG Disabled WCAG {wcagContrast(colors.light.second_bg, colors.light.disabledText)}
+                  </p>
+                  <p style={{ color: colors.light.disabledText }}>
+                    2nd BG Disabled APCA {apcaContrast(colors.light.disabledText, colors.light.second_bg)}
+                  </p>
+                </Grid>
+              </Grid>
             </div>
           </Grid>
 
@@ -70,18 +97,43 @@ export function Examples(props: ExampleProps) {
               }}
             >
               <p style={{ color: colors.dark.text }}>Dark theme</p>
-              <p style={{ color: colors.dark.text }}>WCAG {wcagContrast(colors.dark.second_bg, colors.dark.text)}</p>
-              <p style={{ color: colors.dark.text }}>1st BG APCA {apcaContrast(colors.dark.text, colors.dark.bg)}</p>
-              <p style={{ color: colors.dark.text }}>
-                2nd BG APCA {apcaContrast(colors.dark.text, colors.dark.second_bg)}
-              </p>
-              <div style={{ backgroundColor: colors.dark.accent, height: "2px" }}></div>
-              <p style={{ color: colors.dark.text }}>
-                ACCENT WCAG {wcagContrast(colors.dark.second_bg, colors.dark.accent)}
-              </p>
-              <p style={{ color: colors.dark.text }}>
-                ACCENT APCA {apcaContrast(colors.dark.accent, colors.dark.second_bg)}
-              </p>
+              <Grid container>
+                <Grid xs={6}>
+                  <p style={{ color: colors.dark.text }}>
+                    WCAG {wcagContrast(colors.dark.second_bg, colors.dark.text)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    1st BG APCA {apcaContrast(colors.dark.text, colors.dark.bg)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    2nd BG APCA {apcaContrast(colors.dark.text, colors.dark.second_bg)}
+                  </p>
+                  <div style={{ backgroundColor: colors.dark.accent, height: "2px" }}></div>
+                  <p style={{ color: colors.dark.text }}>
+                    ACCENT WCAG {wcagContrast(colors.dark.second_bg, colors.dark.accent)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                    ACCENT APCA {apcaContrast(colors.dark.accent, colors.dark.second_bg)}
+                  </p>
+                </Grid>
+                <Grid xs={6}>
+                  <p style={{ color: colors.dark.text }}>
+                  BORDER 1st BG APCA {apcaContrast(colors.dark.border, colors.dark.bg)}
+                  </p>
+                  <p style={{ color: colors.dark.text }}>
+                  BORDER 2nd BG APCA {apcaContrast(colors.dark.border, colors.dark.second_bg)}
+                  </p>
+                  <p style={{ color: colors.dark.disabledText }}>
+                    w/ TEXT Disabled WCAG {wcagContrast(colors.dark.text, colors.dark.disabledText)}
+                  </p>
+                  <p style={{ color: colors.dark.disabledText }}>
+                    2nd BG Disabled WCAG {wcagContrast(colors.dark.second_bg, colors.dark.disabledText)}
+                  </p>
+                  <p style={{ color: colors.dark.disabledText }}>
+                    2nd BG Disabled APCA {apcaContrast(colors.dark.disabledText, colors.dark.second_bg)}
+                  </p>
+                </Grid>
+              </Grid>
             </div>
           </Grid>
 
@@ -220,11 +272,13 @@ export function Examples(props: ExampleProps) {
           {["success", "error", "warning", "info"].map((intent) => {
             return (
               <>
-                <Grid xs={3} sx={{ p: 2, backgroundColor: colors.dark.bg }}>
+                <Grid xs={6} sx={{ p: 2, backgroundColor: colors.dark.bg }}>
                   <div
                     style={{
                       padding: "2rem",
                       backgroundColor: hexFromTheme(theme, intent, "300"),
+                      border: `2px solid ${hexFromTheme(theme, intent, "500")}`,
+                      borderRadius: "2px",
                     }}
                   >
                     <p
@@ -233,6 +287,19 @@ export function Examples(props: ExampleProps) {
                       }}
                     >
                       This is {intent}
+                    </p>
+                    <p style={{ color: colors.light.text }}>
+                      TEXT WCAG {wcagContrast(hexFromTheme(theme, intent, "300"), hexFromTheme(theme, intent, "700"))}
+                    </p>
+                    <p style={{ color: colors.light.text }}>
+                      TEXT APCA {apcaContrast(hexFromTheme(theme, intent, "700"), hexFromTheme(theme, intent, "300"))}
+                    </p>
+                    <p style={{ color: colors.light.text }}>
+                      BORDER INNER WCAG{" "}
+                      {wcagContrast(hexFromTheme(theme, intent, "500"), hexFromTheme(theme, intent, "300"))}
+                    </p>
+                    <p style={{ color: colors.light.text }}>
+                      BORDER 2nd BG WCAG {wcagContrast(hexFromTheme(theme, intent, "500"), colors.dark.second_bg)}
                     </p>
                   </div>
                 </Grid>
