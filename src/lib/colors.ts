@@ -1,9 +1,4 @@
-import {
-  argbFromHex,
-  TonalPalette,
-  Blend,
-  hexFromArgb,
-} from "@material/material-color-utilities";
+import { argbFromHex, TonalPalette, Blend, hexFromArgb } from "@material/material-color-utilities";
 import Color from "colorjs.io";
 
 /**
@@ -41,22 +36,22 @@ function createPalette(paletteBase: MyColorPalette, fromColor: number) {
   let materialPalette = TonalPalette.fromInt(fromColor);
 
   newPalette.forEach((cs) => {
-       cs.value = materialPalette.tone(cs.value);
+    cs.value = materialPalette.tone(cs.value);
   });
 
   return newPalette;
 }
 
 const PALETTE_NEUTRAL = [
-  { name: "100", value: 98 },   // Light: Background  +  Dark: Text
-  { name: "200", value: 96 },   // Light: Secondary BG
-  { name: "300", value: 84 },   // Light: Border
-  { name: "400", value: 60 },   // Dark: Disabled Text / Placeholder
-  { name: "500", value: 50 },   // ACCENT COLOR
-  { name: "600", value: 44 },   // Light: Disabled Text
-  { name: "700", value: 39 },   // Dark: Border
-  { name: "800", value: 16 },   // Dark: Secondary BG
-  { name: "900", value: 10 },   // Dark: Background  +  Light: Text
+  { name: "100", value: 98 }, // Light: Background  +  Dark: Text
+  { name: "200", value: 96 }, // Light: Secondary BG
+  { name: "300", value: 84 }, // Light: Border
+  { name: "400", value: 60 }, // Dark: Disabled Text / Placeholder
+  { name: "500", value: 50 }, // ACCENT COLOR
+  { name: "600", value: 44 }, // Light: Disabled Text
+  { name: "700", value: 39 }, // Dark: Border
+  { name: "800", value: 16 }, // Dark: Secondary BG
+  { name: "900", value: 10 }, // Dark: Background  +  Light: Text
 ];
 
 /**
@@ -124,4 +119,21 @@ export function createNewTheme(fromColor: string, accentColor: string, yellowDri
 
 export function argbToHex(argb: number) {
   return hexFromArgb(argb);
+}
+
+export function randomColorFromHue(hue: number, hueRange: number) {
+  const h = Math.floor(Math.random() * (2 *  hueRange) + hue - hueRange)
+  const s = Math.floor(Math.random() * 100)
+  const l = Math.floor(Math.random() * 100)
+
+  let color = new Color(`hsl(${h} ${s}% ${l}%)`)
+  color = color.to("srgb")
+  
+  return color.toString({ format: "hex" })
+}
+
+export function materialToneFromHex(colorHex: string, selectedTone: number) {
+  const materialPalette = TonalPalette.fromInt(argbFromHex(colorHex));
+
+  return argbToHex(materialPalette.tone(selectedTone));
 }
