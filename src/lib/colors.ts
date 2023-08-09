@@ -121,12 +121,24 @@ export function argbToHex(argb: number) {
   return hexFromArgb(argb);
 }
 
-export function randomColorFromHue(hue: number, hueRange: number) {
+export function randomColorFromHueSaturation(hue: number, hueRange: number, saturation: number) {
   const h = Math.floor(Math.random() * (2 *  hueRange) + hue - hueRange)
-  const s = Math.floor(Math.random() * 100)
+  const s = saturation
   const l = Math.floor(Math.random() * 100)
 
   let color = new Color(`hsl(${h} ${s}% ${l}%)`)
+  color = color.to("srgb")
+  
+  return color.toString({ format: "hex" })
+}
+
+export function randomColorFromHue(hue: number, hueRange: number) { 
+  return randomColorFromHueSaturation(hue, hueRange, Math.floor(Math.random() * 100))
+}
+
+export function changeColorSaturation(colorHex: string, saturation: number) {
+  let color = new Color(colorHex)
+  color.set("hsl.s", saturation)
   color = color.to("srgb")
   
   return color.toString({ format: "hex" })

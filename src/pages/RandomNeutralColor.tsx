@@ -12,12 +12,13 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useEffect, useState } from "react";
-import { materialToneFromHex, randomColorFromHue } from "../lib/colors";
+import { changeColorSaturation, materialToneFromHex, randomColorFromHueSaturation } from "../lib/colors";
 
 function RandomNeutralColorPage() {
   const [lightColorStop, setLightColorStop] = useState(98);
   const [darkColorStop, setDarkColorStop] = useState(10);
   const [hue, setHue] = useState("red");
+  const [saturation, setSaturation] = useState(Math.floor(Math.random() * 100));
 
   const [randomColor, setRandomColor] = useState("#000");
   const [lightColor, setLightColor] = useState("");
@@ -34,11 +35,12 @@ function RandomNeutralColorPage() {
 
   const generateRandomColor = () => {
     const hueValue = huesList.find((e) => e.name === hue)?.value || 0;
-    setRandomColor(randomColorFromHue(hueValue, 30));
+    setRandomColor(randomColorFromHueSaturation(hueValue, 30, saturation));
   };
 
   useEffect(() => generateRandomColor(), [hue]);
-
+  useEffect(() => setRandomColor(changeColorSaturation(randomColor, saturation)), [saturation])
+  
   useEffect(() => {
     setLightColor(materialToneFromHex(randomColor, lightColorStop));
     setDarkColor(materialToneFromHex(randomColor, darkColorStop));
@@ -80,9 +82,19 @@ function RandomNeutralColorPage() {
           </FormControl>
         </Stack>
         <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
-          <Button variant="contained" onClick={() => generateRandomColor()}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setSaturation(Math.floor(Math.random() * 100));
+              generateRandomColor();
+            }}
+          >
             Generate Random Color
           </Button>
+          <div>
+            <Typography gutterBottom>Saturation: {saturation}</Typography>
+            <Slider value={saturation} min={0} max={100} onChange={(_e, value) => setSaturation(value)} />
+          </div>
         </Stack>
       </Container>
 
