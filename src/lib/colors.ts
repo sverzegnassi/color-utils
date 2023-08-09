@@ -48,10 +48,10 @@ function createPalette(paletteBase: MyColorPalette, fromColor: number) {
 }
 
 const PALETTE_NEUTRAL = [
-  { name: "100", value: 97 },   // Light: Background  +  Dark: Text
-  { name: "200", value: 95 },   // Light: Secondary BG
+  { name: "100", value: 98 },   // Light: Background  +  Dark: Text
+  { name: "200", value: 96 },   // Light: Secondary BG
   { name: "300", value: 84 },   // Light: Border
-  { name: "400", value: 59 },   // Dark: Disabled Text / Placeholder
+  { name: "400", value: 60 },   // Dark: Disabled Text / Placeholder
   { name: "500", value: 50 },   // ACCENT COLOR
   { name: "600", value: 44 },   // Light: Disabled Text
   { name: "700", value: 39 },   // Dark: Border
@@ -86,8 +86,8 @@ const PALETTE_LINK = [
  * Should pass WCAG 7:1
  */
 const PALETTE_SEMANTIC = [
-  { name: "300", value: 81 },
-  { name: "500", value: 47 },
+  { name: "300", value: 85 },
+  { name: "500", value: 48 },
   { name: "700", value: 25 },
 ];
 /**
