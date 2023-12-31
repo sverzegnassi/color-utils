@@ -110,6 +110,7 @@ export function createNewTheme(fromColor: string, accentColor: string, yellowDri
     neutral: neutralPalette,
     link: createPalette(PALETTE_LINK, Blend.harmonize(argbFromHex(COLOR_REF_LINK), argb)),
     linkVisited: createPalette(PALETTE_LINK, Blend.harmonize(argbFromHex(COLOR_REF_LINK_VISITED), argb)),
+    brand: createPalette(PALETTE_SEMANTIC,  TonalPalette.fromInt(argbFromHex(accentColor)).tone(50)),
     success: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_SUCCESS), argb)),
     error: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(COLOR_REF_ERROR), argb)),
     warning: createPalette(PALETTE_SEMANTIC, Blend.harmonize(argbFromHex(yellowHex), argb)),
