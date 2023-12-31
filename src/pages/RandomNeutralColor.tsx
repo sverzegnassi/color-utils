@@ -52,11 +52,11 @@ function RandomNeutralColorPage() {
         <Stack direction="row" spacing={2}>
           <div>
             <Typography gutterBottom>Light Color Stop: {lightColorStop}</Typography>
-            <Slider value={lightColorStop} min={0} max={100} onChange={(_e, value) => setLightColorStop(value)} />
+            <Slider value={lightColorStop} min={0} max={100} onChange={(_e, value) => setLightColorStop(value as number)} />
           </div>
           <div>
             <Typography gutterBottom>Dark Color Stop: {darkColorStop}</Typography>
-            <Slider value={darkColorStop} min={0} max={100} onChange={(_e, value) => setDarkColorStop(value)} />
+            <Slider value={darkColorStop} min={0} max={100} onChange={(_e, value) => setDarkColorStop(value as number)} />
           </div>
           <FormControl>
             <FormLabel id="basecolor-group-label">Base Color: {hue}</FormLabel>
@@ -93,7 +93,7 @@ function RandomNeutralColorPage() {
           </Button>
           <div>
             <Typography gutterBottom>Saturation: {saturation}</Typography>
-            <Slider value={saturation} min={0} max={100} onChange={(_e, value) => setSaturation(value)} />
+            <Slider value={saturation} min={0} max={100} onChange={(_e, value) => setSaturation(value as number)} />
           </div>
         </Stack>
       </Container>

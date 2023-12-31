@@ -36,7 +36,7 @@ function ThemeGeneratorPage() {
           />
           <div>
             <Typography gutterBottom>Yellow drift: {yellowDrift}</Typography>
-            <Slider value={yellowDrift} min={125} max={255} onChange={(_e, value) => setYellowDrift(value)} />
+            <Slider value={yellowDrift} min={125} max={255} onChange={(_e, value) => setYellowDrift(value as number)} />
           </div>
           <Button onClick={() => exportTailwindConfig(generatedTheme)}>Export Tailwind Config</Button>
         </Stack>
